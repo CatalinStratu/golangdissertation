@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="products_nutrivise@localhost">
+  <database-model serializer="dbm" dbms="MONGO" family-id="MONGO" format-version="4.38">
+    <root id="1">
+      <ServerVersion>5.0.5</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="admin"/>
+    <schema id="3" parent="1" name="config"/>
+    <schema id="4" parent="1" name="local"/>
+    <schema id="5" parent="1" name="test"/>
+    <schema id="6" parent="1" name="testdb"/>
+    <schema id="7" parent="1" name="products_nutrivise">
+      <Current>1</Current>
+    </schema>
+    <table id="8" parent="7" name="products"/>
+    <table id="9" parent="7" name="products_nutri"/>
+    <column id="10" parent="8" name="_id">
+      <DataType>ObjectId|12s</DataType>
+      <Position>1</Position>
+    </column>
+    <column id="11" parent="8" name="additives_n">
+      <DataType>Int32|4s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="12" parent="8" name="brands">
+      <DataType>String|12s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="13" parent="8" name="brands_tags">
+      <DataType>String|12s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="14" parent="8" name="carbohydrates_100g">
+      <DataType>Int32|4s</DataType>
+      <Position>5</Position>
+    </column>
+    <column id="15" parent="8" name="categories">
+      <DataType>String|12s</DataType>
+      <Position>6</Position>
+    </column>
+    <column id="16" parent="8" name="categories_en">
+      <DataType>String|12s</DataType>
+      <Position>7</Position>
+    </column>
+    <column id="17" parent="8" name="categories_tags">
+      <DataType>String|12s</DataType>
+      <Position>8</Position>
+    </column>
+    <column id="18" parent="8" name="code">
+      <DataType>Int32|4s</DataType>
+      <Position>9</Position>
+    </column>
+    <column id="19" parent="8" name="completeness">
+      <DataType>Double|8s</DataType>
+      <Position>10</Position>
+    </column>
+    <column id="20" parent="8" name="countries">
+      <DataType>String|12s</DataType>
+      <Position>11</Position>
+    </column>
+    <column id="21" parent="8" name="countries_en">
+      <DataType>String|12s</DataType>
+      <Position>12</Position>
+    </column>
+    <column id="22" parent="8" name="countries_tags">
+      <DataType>String|12s</DataType>
+      <Position>13</Position>
+    </column>
+    <column id="23" parent="8" name="created_datetime">
+      <DataType>ISODate|91s</DataType>
+      <Position>14</Position>
+    </column>
+    <column id="24" parent="8" name="created_t">
+      <DataType>Int32|4s</DataType>
+      <Position>15</Position>
+    </column>
+    <column id="25" parent="8" name="creator">
+      <DataType>String|12s</DataType>
+      <Position>16</Position>
+    </column>
+    <column id="26" parent="8" name="data_quality_errors_tags">
+      <DataType>String|12s</DataType>
+      <Position>17</Position>
+    </column>
+    <column id="27" parent="8" name="ecoscore_grade">
+      <DataType>String|12s</DataType>
+      <Position>18</Position>
+    </column>
+    <column id="28" parent="8" name="ecoscore_score">
+      <DataType>Int32|4s</DataType>
+      <Position>19</Position>
+    </column>
+    <column id="29" parent="8" name="energy-kcal_100g">
+      <DataType>Int32|4s</DataType>
+      <Position>20</Position>
+    </column>
+    <column id="30" parent="8" name="energy-kj_100g">
+      <DataType>Double|8s</DataType>
+      <Position>21</Position>
+    </column>
+    <column id="31" parent="8" name="energy_100g">
+      <DataType>Int32|4s</DataType>
+      <Position>22</Position>
+    </column>
+    <column id="32" parent="8" name="fat_100g">
+      <DataType>Int32|4s</DataType>
+      <Position>23</Position>
+    </column>
+    <column id="33" parent="8" name="fiber_100g">
+      <DataType>Int32|4s</DataType>
+      <Position>24</Position>
+    </column>
+    <column id="34" parent="8" name="food_groups">
+      <DataType>String|12s</DataType>
+      <Position>25</Position>
+    </column>
+    <column id="35" parent="8" name="food_groups_en">
+      <DataType>String|12s</DataType>
+      <Position>26</Position>
+    </column>
+    <column id="36" parent="8" name="food_groups_tags">
+      <DataType>String|12s</DataType>
+      <Position>27</Position>
+    </column>
+    <column id="37" parent="8" name="fruits-vegetables-nuts-estimate-from-ingredients_100g">
+      <DataType>Int32|4s</DataType>
+      <Position>28</Position>
+    </column>
+    <column id="38" parent="8" name="image_ingredients_small_url">
+      <DataType>String|12s</DataType>
+      <Position>29</Position>
+    </column>
+    <column id="39" parent="8" name="image_ingredients_url">
+      <DataType>String|12s</DataType>
+      <Position>30</Position>
+    </column>
+    <column id="40" parent="8" name="image_nutrition_small_url">
+      <DataType>String|12s</DataType>
+      <Position>31</Position>
+    </column>
+    <column id="41" parent="8" name="image_nutrition_url">
+      <DataType>String|12s</DataType>
+      <Position>32</Position>
+    </column>
+    <column id="42" parent="8" name="image_small_url">
+      <DataType>String|12s</DataType>
+      <Position>33</Position>
+    </column>
+    <column id="43" parent="8" name="image_url">
+      <DataType>String|12s</DataType>
+      <Position>34</Position>
+    </column>
+    <column id="44" parent="8" name="ingredients_analysis_tags">
+      <DataType>String|12s</DataType>
+      <Position>35</Position>
+    </column>
+    <column id="45" parent="8" name="ingredients_tags">
+      <DataType>String|12s</DataType>
+      <Position>36</Position>
+    </column>
+    <column id="46" parent="8" name="ingredients_text">
+      <DataType>String|12s</DataType>
+      <Position>37</Position>
+    </column>
+    <column id="47" parent="8" name="labels">
+      <DataType>String|12s</DataType>
+      <Position>38</Position>
+    </column>
+    <column id="48" parent="8" name="labels_en">
+      <DataType>String|12s</DataType>
+      <Position>39</Position>
+    </column>
+    <column id="49" parent="8" name="labels_tags">
+      <DataType>String|12s</DataType>
+      <Position>40</Position>
+    </column>
+    <column id="50" parent="8" name="last_image_datetime">
+      <DataType>ISODate|91s</DataType>
+      <Position>41</Position>
+    </column>
+    <column id="51" parent="8" name="last_image_t">
+      <DataType>Int32|4s</DataType>
+      <Position>42</Position>
+    </column>
+    <column id="52" parent="8" name="last_modified_by">
+      <DataType>String|12s</DataType>
+      <Position>43</Position>
+    </column>
+    <column id="53" parent="8" name="last_modified_datetime">
+      <DataType>ISODate|91s</DataType>
+      <Position>44</Position>
+    </column>
+    <column id="54" parent="8" name="last_modified_t">
+      <DataType>Int32|4s</DataType>
+      <Position>45</Position>
+    </column>
+    <column id="55" parent="8" name="main_category">
+      <DataType>String|12s</DataType>
+      <Position>46</Position>
+    </column>
+    <column id="56" parent="8" name="main_category_en">
+      <DataType>String|12s</DataType>
+      <Position>47</Position>
+    </column>
+    <column id="57" parent="8" name="nutrient_levels_tags">
+      <DataType>String|12s</DataType>
+      <Position>48</Position>
+    </column>
+    <column id="58" parent="8" name="nutriscore_grade">
+      <DataType>String|12s</DataType>
+      <Position>49</Position>
+    </column>
+    <column id="59" parent="8" name="nutriscore_score">
+      <DataType>Int32|4s</DataType>
+      <Position>50</Position>
+    </column>
+    <column id="60" parent="8" name="nutrition-score-fr_100g">
+      <DataType>Int32|4s</DataType>
+      <Position>51</Position>
+    </column>
+    <column id="61" parent="8" name="origins">
+      <DataType>String|12s</DataType>
+      <Position>52</Position>
+    </column>
+    <column id="62" parent="8" name="origins_en">
+      <DataType>String|12s</DataType>
+      <Position>53</Position>
+    </column>
+    <column id="63" parent="8" name="origins_tags">
+      <DataType>String|12s</DataType>
+      <Position>54</Position>
+    </column>
+    <column id="64" parent="8" name="pnns_groups_1">
+      <DataType>String|12s</DataType>
+      <Position>55</Position>
+    </column>
+    <column id="65" parent="8" name="pnns_groups_2">
+      <DataType>String|12s</DataType>
+      <Position>56</Position>
+    </column>
+    <column id="66" parent="8" name="product_name">
+      <DataType>String|12s</DataType>
+      <Position>57</Position>
+    </column>
+    <column id="67" parent="8" name="product_quantity">
+      <DataType>Int32|4s</DataType>
+      <Position>58</Position>
+    </column>
+    <column id="68" parent="8" name="proteins_100g">
+      <DataType>Double|8s</DataType>
+      <Position>59</Position>
+    </column>
+    <column id="69" parent="8" name="quantity">
+      <DataType>String|12s</DataType>
+      <Position>60</Position>
+    </column>
+    <column id="70" parent="8" name="salt_100g">
+      <DataType>Double|8s</DataType>
+      <Position>61</Position>
+    </column>
+    <column id="71" parent="8" name="saturated-fat_100g">
+      <DataType>Int32|4s</DataType>
+      <Position>62</Position>
+    </column>
+    <column id="72" parent="8" name="sodium_100g">
+      <DataType>Double|8s</DataType>
+      <Position>63</Position>
+    </column>
+    <column id="73" parent="8" name="states">
+      <DataType>String|12s</DataType>
+      <Position>64</Position>
+    </column>
+    <column id="74" parent="8" name="states_en">
+      <DataType>String|12s</DataType>
+      <Position>65</Position>
+    </column>
+    <column id="75" parent="8" name="states_tags">
+      <DataType>String|12s</DataType>
+      <Position>66</Position>
+    </column>
+    <column id="76" parent="8" name="sugars_100g">
+      <DataType>Double|8s</DataType>
+      <Position>67</Position>
+    </column>
+    <column id="77" parent="8" name="url">
+      <DataType>String|12s</DataType>
+      <Position>68</Position>
+    </column>
+  </database-model>
+</dataSource>
