@@ -16,7 +16,7 @@ type Patient struct {
 	Age              int     `json:"age"`
 	Weight           float64 `json:"weight"`
 	Height           float64 `json:"height"`
-	Gender           string  `json:"gender"`
+	Gender           int     `json:"gender"`
 	PhysicalActivity float64 `json:"physical_activity"`
 }
 
@@ -117,15 +117,16 @@ type Recipe struct {
 	} `json:"hits"`
 }
 
-//Products
+// Products
 type Food struct {
 	FoodID        string `json:"foodId"`
 	Label         string `json:"label"`
 	KnownAs       string `json:"knownAs"`
 	Nutrients     Nutrients
-	Category      string `json:"category"`
-	CategoryLabel string `json:"categoryLabel"`
-	Image         string `json:"image"`
+	Category      string   `json:"category"`
+	CategoryLabel string   `json:"categoryLabel"`
+	Image         string   `json:"image"`
+	MealType      []string `json:"mealType"`
 }
 
 type Nutrients struct {

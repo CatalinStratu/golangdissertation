@@ -11,7 +11,7 @@ func TestCalculateCalorieNeeds(t *testing.T) {
 		age              int
 		weightKg         float64
 		heightCm         float64
-		gender           string
+		gender           int
 		physicalActivity float64
 		expectedCalories float64
 		expectedError    bool
@@ -21,7 +21,7 @@ func TestCalculateCalorieNeeds(t *testing.T) {
 			age:              30,
 			weightKg:         70.0,
 			heightCm:         170.0,
-			gender:           Male,
+			gender:           1,
 			physicalActivity: 1.55,
 			expectedCalories: 2591.09,
 			expectedError:    false,
@@ -31,7 +31,7 @@ func TestCalculateCalorieNeeds(t *testing.T) {
 			age:              25,
 			weightKg:         60.0,
 			heightCm:         160.0,
-			gender:           Female,
+			gender:           0,
 			physicalActivity: 1.2,
 			expectedCalories: 1667.81,
 			expectedError:    false,
@@ -41,7 +41,7 @@ func TestCalculateCalorieNeeds(t *testing.T) {
 			age:              15,
 			weightKg:         60.0,
 			heightCm:         160.0,
-			gender:           Female,
+			gender:           0,
 			physicalActivity: 1.0,
 			expectedCalories: 1667.81,
 			expectedError:    false,
@@ -73,7 +73,7 @@ func TestCalculateCalorieInvalidGender(t *testing.T) {
 		age              int
 		weightKg         float64
 		heightCm         float64
-		gender           string
+		gender           int
 		physicalActivity float64
 		expectedCalories float64
 		expectedError    bool
@@ -83,7 +83,7 @@ func TestCalculateCalorieInvalidGender(t *testing.T) {
 			age:              40,
 			weightKg:         80.0,
 			heightCm:         175.0,
-			gender:           "invalid",
+			gender:           3,
 			physicalActivity: 1.6,
 			expectedCalories: 0,
 			expectedError:    true,

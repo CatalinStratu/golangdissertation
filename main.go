@@ -9,6 +9,7 @@ import (
 	"microservice/helpers"
 	"microservice/src"
 	"net/http"
+	"sort"
 	"strconv"
 	"sync"
 )
@@ -23,8 +24,9 @@ type Patient struct {
 }
 
 type Meal struct {
-	name    string
-	percent float64
+	name     string
+	percent  float64
+	category string
 }
 
 func FindMax(products []Recipe) []Recipe {
@@ -89,6 +91,7 @@ type ResponseRecipe struct {
 	TotalCO2Emissions float64  `json:"totalCO2Emissions"`
 	Co2EmissionsClass string   `json:"co2EmissionsClass"`
 	TotalWeight       float64  `json:"totalWeight"`
+	MealType          []string `json:"mealType"`
 	Ingredients       []src.Food
 }
 
@@ -214,7 +217,7 @@ func fetchRecipes(url string, results chan<- []Recipe, wg *sync.WaitGroup, calor
 	}
 	caloriesPerMeal := calories + 0.1*calories
 	var recipes []Recipe
-	flag := 5
+	flag := 3
 	for _, v := range recipe.Hits {
 		if v.Recipe.Calories <= caloriesPerMeal {
 			if flag != 0 {
@@ -224,6 +227,7 @@ func fetchRecipes(url string, results chan<- []Recipe, wg *sync.WaitGroup, calor
 			}
 			break
 		}
+
 	}
 	results <- FindMax(recipes)
 }
@@ -251,55 +255,48 @@ func searchProduct(query string, wgi *sync.WaitGroup, results chan<- src.Food) {
 	}
 	if len(data.Hints) > 0 {
 		results <- data.Hints[0].Food
-
 	}
 }
 func Recipes(ctx *gin.Context) {
 
 	var wg sync.WaitGroup
 
-	//var patient Patient
-	//
-	//patient.age = 30
-	//patient.weightKg = 70.0
-	//patient.heightCm = 170.0
-	//patient.gender = src.Male
-	//patient.physicalActivity = 1.55
-	//
-	//calories, err := src.CalculateCalories(patient.age, patient.weightKg, patient.heightCm, patient.gender, patient.physicalActivity)
-	//
-	//if err != nil {
-	//	fmt.Println("erorr", err.Error())
-	//	return
-	//}
 	param := ctx.Param("calories")
 	calories, _ := strconv.ParseFloat(param, 8)
+	if calories <= 500 {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Min 500 calories"})
+		return
+	}
+
 	results := make(chan []Recipe)
 
 	var meals []Meal
 
 	meals = append(meals,
 		Meal{
-			name:    "Breakfast",
-			percent: 20,
+			name:     "Breakfast",
+			percent:  20,
+			category: "&dishType=Cereals&dishType=Pancake&dishType=Sandwiches",
+		},
+		Meal{
+			name:     "Lunch",
+			percent:  20,
+			category: "&dishType=Soup",
+		},
+		Meal{
+			name:     "Lunch",
+			percent:  20,
+			category: "&dishType=Main%20course",
 		},
 		Meal{
 			name:    "Dinner",
-			percent: 20,
-		},
-		Meal{
-			name:    "Dinner",
-			percent: 20,
-		},
-		Meal{
-			name:    "Lunch",
 			percent: 20,
 		})
 
 	for _, meal := range meals {
 		wg.Add(1)
 		caloriesPerMeal := helpers.CalculateValueFromPercent(calories, meal.percent)
-		go fetchRecipes("https://api.edamam.com/api/recipes/v2?type=public&app_id=229871f5&app_key=2fbe0ee7d7b5857a57e48e6f58232deb&health=alcohol-free&cuisineType=Central%20Europe&calories=10-"+fmt.Sprintf("%v", math.Round(caloriesPerMeal+0.1*caloriesPerMeal))+"&mealType="+meal.name+"&diet=low-fat&co2EmissionsClass=B&random=true", results, &wg, caloriesPerMeal)
+		go fetchRecipes("https://api.edamam.com/api/recipes/v2?type=public&app_id=229871f5&app_key=2fbe0ee7d7b5857a57e48e6f58232deb&health=alcohol-free&cuisineType=Central%20Europe&calories=10-"+fmt.Sprintf("%v", math.Round(caloriesPerMeal+0.1*caloriesPerMeal))+"&mealType="+meal.name+meal.category+"&co2EmissionsClass=B&random=true", results, &wg, caloriesPerMeal)
 	}
 
 	// Use a separate Goroutine to close the results channel when all Goroutines are done
@@ -315,6 +312,7 @@ func Recipes(ctx *gin.Context) {
 	for recipes := range results {
 		allRecipes = append(allRecipes, recipes...)
 	}
+
 	var responseRecipe []ResponseRecipe
 	for _, v := range allRecipes {
 		var r ResponseRecipe
@@ -335,6 +333,7 @@ func Recipes(ctx *gin.Context) {
 		r.TotalWeight = v.TotalWeight
 		r.Label = v.Label
 		r.Calories = v.Calories
+		r.MealType = v.MealType
 		var wgi sync.WaitGroup
 		ingredients := make(chan src.Food)
 		for _, value := range v.Ingredients {
@@ -357,6 +356,20 @@ func Recipes(ctx *gin.Context) {
 
 		responseRecipe = append(responseRecipe, r)
 	}
+
+	// Sample data
+	recipes := []ResponseRecipe{
+		{MealType: []string{"breakfast"}},
+		{MealType: []string{"lunch"}},
+	}
+
+	// Define a custom sorting function
+	sortByMealType := func(i, j int) bool {
+		return recipes[i].MealType[0] < recipes[j].MealType[0]
+	}
+
+	// Sort the slice based on the custom sorting function
+	sort.Slice(recipes, sortByMealType)
 	ctx.JSON(http.StatusOK, gin.H{"recipes": responseRecipe})
 }
 
